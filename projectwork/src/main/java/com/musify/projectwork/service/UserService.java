@@ -1,6 +1,6 @@
 package com.musify.projectwork.service;
 
-import com.musify.projectwork.User;
+import com.musify.projectwork.UserEntity;
 import com.musify.projectwork.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +14,17 @@ public class UserService {
     private UserRepository userRepository;
 
     // Get all users
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 
     // Create a new user
-    public User createUser(User user) {
+    public UserEntity createUser(UserEntity user) {
         return userRepository.save(user);
     }
 
     // Get a user by ID
-    public User getUserById(Long id) {
+    public UserEntity getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 

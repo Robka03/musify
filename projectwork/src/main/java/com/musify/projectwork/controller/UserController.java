@@ -1,5 +1,5 @@
 package com.musify.projectwork.controller;
-import com.musify.projectwork.User;
+import com.musify.projectwork.UserEntity;
 import com.musify.projectwork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +15,19 @@ public class UserController {
 
     // Get all users
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userService.getAllUsers();
     }
 
     // Create a new user
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserEntity createUser(@RequestBody UserEntity user) {
         return userService.createUser(user);
     }
 
     // Get user by ID
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    public UserEntity getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
