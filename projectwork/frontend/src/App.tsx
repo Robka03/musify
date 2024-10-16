@@ -11,10 +11,11 @@ function App() {
       <div className="App">
         <Navbar/>
         <h1>Musify</h1>
+        
+        <Button text="Roboka"></Button>
         <p>
           WIP
           Roboka Édenkertje legjobbasd
-          <Button text="Roboka"></Button>
         </p>
       </div>
     </>
