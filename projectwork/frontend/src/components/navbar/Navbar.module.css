@@ -1,0 +1,27 @@
+
+.list{
+    list-style-type: none;
+}
+
+.navbar{
+    background-color:#161616c0;
+    display:block;
+    position:fixed;
+    width:100%;
+    color: #f6f9fc;
+    z-index:10
+}
+
+.listElement{
+    color:#f6f9fc;
+    text-decoration:none;
+    font-weight:600;
+    border-bottom:transparent solid 2px;
+    transition: all 0.3s ease;
+    &:hover{
+        color:#c9e4ff;
+        border-bottom:#c9e4ff solid 2px;
+        text-shadow: 0 0 10px #00141d31;
+    }
+}
+

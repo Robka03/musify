@@ -1,22 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Showoff from './Showoff';
-import Navbar from "./navbar/Navbar";
-import Button from "./common/Button";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
+import Main from "./components/main/Main";
 
 function App() {
   return (
     <>
       <div className="App">
         <Navbar/>
-        <h1>Musify</h1>
-        
-        <Button text="Roboka"></Button>
-        <p>
-          WIP
-          Roboka Édenkertje legjobbasd
-        </p>
+        <Main></Main>
+        <Footer/>
       </div>
     </>
   );

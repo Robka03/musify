@@ -1,0 +1,38 @@
+.productImage{
+    aspect-ratio:1/1.4142;
+    width: 100%;
+}
+
+.productImageContainer{
+    position:relative;
+    z-index: 0;
+    aspect-ratio:1/1.4142;
+    width: 50%;
+
+    &:hover img{
+        transition: all 0.3s ease;
+        filter:blur(2px);
+    }
+
+    & p{
+        position:absolute;
+        left:50%;
+        top:50%;
+        transition: all 0.3s ease-in-out;
+        color:transparent;
+        transform:translate(-50%,-50%);
+        
+        overflow-wrap:anywhere;
+        width:100%;
+    }
+    &:hover p{
+        color:white;
+    }
+}
+
+.productContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
