@@ -17,6 +17,7 @@ node
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+.env
 
 ### VS Code ###
 .vscode/

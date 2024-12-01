@@ -1,12 +1,14 @@
 import Image from '../../assets/1.png';
 import Image2 from '../../assets/2.png';
 import Image3 from '../../assets/3.png';
-import { CSSProperties, forwardRef } from 'react';
+import { createRef, CSSProperties, forwardRef, useEffect, useRef } from 'react';
+import Fluid from 'fluid-canvas';
+import { log } from 'console';
 
 export default function Slideshow() {
-    return(
+    return (
         <div className="slideshow">
-            <SlideshowManager images={[Image, Image2, Image3]}/>
+            <SlideshowManager images={[Image, Image2, Image3]} />
         </div>
     )
 }
@@ -15,11 +17,13 @@ interface SlideshowManagerProps {
     images: string[];
 }
 
-function SlideshowManager({images}:SlideshowManagerProps) {
+function SlideshowManager({ images }: SlideshowManagerProps) {
     const imagesNumber = images.length;
-    return(
+
+    return (
         <div className="d-flex">
-            {images.map((image,i) => <SlideshowImage key={image} image={image} style={{width:`calc(100%/${imagesNumber})`}}/>)}
+            
+             {images.map((image,i) => <SlideshowImage key={image} image={image} style={{width:`calc(100%/${imagesNumber})`}}/>)}
         </div>
     )
 }
@@ -29,10 +33,10 @@ interface SlideshowImageProps {
     style: CSSProperties;
 }
 
-function SlideshowImage({image, style}:SlideshowImageProps){
-    return(
+function SlideshowImage({ image, style }: SlideshowImageProps) {
+    return (
         <div className="slideshow-image" style={style}>
-            <img src={image} alt="slideshow-image" style={{width:"100%", aspectRatio:"1/1"}}/>
+            <img src={image} alt="slideshow-image" style={{ width: "100%", aspectRatio: "1/1" }} />
         </div>
     )
 }

@@ -1,0 +1,31 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "Kapitány Máté - Sári",
+            "description": "Description of Product 1",
+            "price": 7000,
+            "category": "Playing",
+            "image": "matefinal.png",
+            "imgDescription": "/matefinal.png"
+        },
+        {
+            "id": 2,
+            "title": "ibbigang - Tetko",
+            "description": "Description of Product 2",
+            "price": 7000,
+            "category": "Playing",
+            "image": "tetkofinal.png",
+            "imgDescription": "/tetko.png"
+        },
+        {
+            "id": 3,
+            "title": "veryraredome - 7 A SZÁMOM",
+            "description": "Description of Product 3",
+            "price": 7000,
+            "category": "Playing",
+            "image": "7aszamomfinal.png",
+            "imgDescription": "/7aszamomfinal.png"
+        }
+    ]
+}

@@ -31,8 +31,23 @@
 }
 
 .productContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
+    border: #e4e6e9 solid 1px;
+    height:100%;
+    position: relative;
+}
+
+.borderDivContainer{
+    top:0;
+    left:0;
+    position: absolute;
+    height:100%;
+    display:flex;
+    z-index:0;
+}
+
+.borderDiv{
+    height: 100%;
+    position:relative;
+    border-left: #e4e6e9 dashed 1px;
+    border-right: #e4e6e9 dashed 1px;
 }
