@@ -1,34 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 
+const a4Width = 973;  // A4 width in px
+const a4Height = 1332; // A4 height in px
+
 export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTMLImageElement, title: string, artist: string, length: number } | undefined }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-
     useEffect(() => {
-        if (imageDetails && canvasRef.current) {
-            const cover = imageDetails.img;
+        if (canvasRef.current) {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext('2d');
 
             if (ctx) {
-                // A4 size in pixels at 96 DPI
-                const a4Width = 973;  // A4 width in px
-                const a4Height = 1332; // A4 height in px
-
-                // Calculate the scaling factor
-                const scale = Math.min(a4Width / cover.width, a4Height / cover.height);
-
-                // Calculate the new dimensions for the image
-                const scaledWidth = cover.width * scale;
-                const scaledHeight = cover.height * scale;
 
                 // Resize canvas to A4 aspect ratio
                 canvas.width = a4Width;
                 canvas.height = a4Height;
 
-                // Center the image in the canvas
-                const offsetX = (a4Width - scaledWidth) / 2;
-                const offsetY = (a4Height - scaledHeight) / 2;
+                if (!imageDetails) {
+                    ctx.clearRect(0, 0, a4Width, a4Height);
+                    ctx.fillStyle = "#c1c1c1";
+                    ctx.fillRect(0, 0, a4Width, a4Height);
+                    ctx.fillStyle = "white";
+                    ctx.font = "50px Arial";
+                    ctx.textBaseline = "middle";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`Create your own art here`, a4Width / 2, a4Height / 2)
+                    return;
+                }
+                const cover = imageDetails.img;
+                // A4 size in pixels at 96 DPI
 
                 // Draw the image on the canvas
                 ctx.clearRect(0, 0, a4Width, a4Height); // Clear the canvas before drawing

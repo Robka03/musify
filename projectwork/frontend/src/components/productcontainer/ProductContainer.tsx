@@ -16,12 +16,12 @@ interface ProductContainerProps {
 
 export default function ProductContainer({ image, imgDescription, title, description, bg, direction = "left" }: ProductContainerProps) {
     return (
-        <div className={classes.productContainer + " d-flex position-relative " + (direction == "left" ? "flex-row" : "flex-row-reverse")} style={{ background: bg }}>
+        <div className={classes.productContainer + " d-flex flex-wrap position-relative " + (direction == "left" ? "flex-row" : "flex-row-reverse")} style={{ background: bg }}>
             <ImageContainer>
                 <img src={image} className={"rounded-3 " + classes.productImage} />
                 <p className="p-3">{imgDescription}</p>
             </ImageContainer>
-            <div className="col-7 p-5 d-flex flex-column align-items-center justify-content-center z-1">
+            <div className="col-md-7 col-12  p-5 d-flex flex-column align-items-center justify-content-center z-1">
                 <h3 style={{ marginRight: "auto" }}>{title}</h3>
                 <p style={{ marginRight: "auto" }}>{description}</p>
             </div>
