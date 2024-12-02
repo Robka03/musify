@@ -33,7 +33,7 @@ export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTML
 
                 // Draw the image on the canvas
                 ctx.clearRect(0, 0, a4Width, a4Height); // Clear the canvas before drawing
-                ctx.drawImage(cover, 0, 0, a4Height - 243, a4Height);
+                ctx.drawImage(cover, a4Width/2-a4Height/2, 0, a4Height, a4Height);
                 const imageData = ctx.getImageData(0, 0, a4Width, a4Height);
                 const data = imageData.data;
 
