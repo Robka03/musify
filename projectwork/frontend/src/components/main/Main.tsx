@@ -4,6 +4,7 @@ import ProductContainer from "../productcontainer/ProductContainer"
 //import tetkofinal from "../../assets/tetkofinal.png"
 import ProductContainerHandler from "../productcontainer/ProductContainerHandler"
 import ImgCreatorHandler from "../imgcreator/ImgCreatorHandler"
+import LiquidWarp from "../liquidwarp/LiquidWarp"
 
 export default function Main() {
     return (
@@ -14,7 +15,7 @@ export default function Main() {
             <div className="container p-0" style={{ backgroundColor: "#f6f9fc" }}>
                 <ProductContainerHandler />
             </div>
-            <Slideshow />
+            <LiquidWarp/>
             <div className="container p-0" style={{ backgroundColor: "#f6f9fc" }}>
                 <ImgCreatorHandler/>
             </div>
