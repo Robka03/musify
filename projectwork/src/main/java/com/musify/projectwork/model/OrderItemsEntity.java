@@ -13,8 +13,9 @@ public class OrderItemsEntity {
     @JoinColumn(name = "order_id", nullable = false)
     private OrderEntity order;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private ProductEntity product;
 
     public Long getId() {
         return id;
@@ -32,11 +33,11 @@ public class OrderItemsEntity {
         this.order = order;
     }
 
-    public Long getProductId() {
-        return productId;
+    public ProductEntity getProductId() {
+        return product;
     }
 
     public void setProductId(Long productId) {
-        this.productId = productId;
+        this.product.setId(    productId);
     }
 }

@@ -8,9 +8,7 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false)
-    private OrderItemsEntity id;
+    private Long id;
 
     @Column(name = "image", nullable = false)
     private String image;
@@ -18,11 +16,11 @@ public class ProductEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public OrderItemsEntity getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(OrderItemsEntity id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

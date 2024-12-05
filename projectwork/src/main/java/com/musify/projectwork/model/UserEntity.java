@@ -13,7 +13,7 @@ public class UserEntity {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -22,7 +22,7 @@ public class UserEntity {
     @Column(name = "first_name", nullable = false)
     private String firstname;
 
-    @Column(name = "Last_name", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastname;
 
     @Column(name = "date_of_birth", nullable = false)
@@ -93,5 +93,10 @@ public class UserEntity {
 
     public void setSubscription(boolean subscription) {
         this.subscription = subscription;
+    }
+
+    public UserEntity orElseThrow(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
     }
 }

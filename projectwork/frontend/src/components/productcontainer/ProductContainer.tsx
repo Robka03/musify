@@ -23,7 +23,7 @@ export default function ProductContainer({ image, imgDescription, title, descrip
             </ImageContainer>
             <div className="col-md-7 col-12  p-5 d-flex flex-column align-items-center justify-content-center z-1">
                 <h3 style={{ marginRight: "auto" }}>{title}</h3>
-                <p style={{ marginRight: "auto" }}>{description}</p>
+                <p style={{ marginRight: "auto", textAlign: "left" }}>{description}</p>
             </div>
             <ProductDashes />
         </div>
