@@ -1,6 +1,7 @@
 package com.musify.projectwork.controller;
 import java.util.List;
-
+import com.musify.projectwork.OrderEntity;
+import com.musify.projectwork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,19 +25,19 @@ public class UserController {
 
     // Get all users
     @GetMapping
-    public List<UserEntity> getAllUsers() {
+    public List<OrderEntity> getAllUsers() {
         return userService.getAllUsers();
     }
 
     // Create a new user
     @PostMapping
-    public UserEntity createUser(@RequestBody UserEntity user) {
+    public OrderEntity createUser(@RequestBody OrderEntity user) {
         return userService.createUser(user);
     }
 
     // Get user by ID
     @GetMapping("/{id}")
-    public UserEntity getUserById(@PathVariable Long id) {
+    public OrderEntity getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 

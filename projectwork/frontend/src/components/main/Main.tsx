@@ -5,6 +5,7 @@ import ProductContainer from "../productcontainer/ProductContainer"
 import ProductContainerHandler from "../productcontainer/ProductContainerHandler"
 import ImgCreatorHandler from "../imgcreator/ImgCreatorHandler"
 import LiquidWarp from "../liquidwarp/LiquidWarp"
+import * as THREE from "three"
 
 export default function Main() {
     return (
@@ -15,7 +16,9 @@ export default function Main() {
             <div className="container p-0" style={{ backgroundColor: "#f6f9fc" }}>
                 <ProductContainerHandler />
             </div>
-            <LiquidWarp/>
+            <div className="position-relative" style={{height:"50vh"}}><LiquidWarp seed={500} color={new THREE.Color(0,1,1)} background={new THREE.Color(0,0,0)}/>
+            </div>
+            
             <div className="container p-0" style={{ backgroundColor: "#f6f9fc" }}>
                 <ImgCreatorHandler/>
             </div>

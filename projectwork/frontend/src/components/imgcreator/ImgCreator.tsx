@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 const a4Width = 973;  // A4 width in px
 const a4Height = 1332; // A4 height in px
 
-export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTMLImageElement, title: string, artist: string, length: number } | undefined }) {
+export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTMLImageElement, code: HTMLImageElement, title: string, artist: string, length: number } | undefined }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
@@ -45,6 +45,13 @@ export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTML
                 }
                 ctx.putImageData(imageData, 0, 0);
                 ctx.drawImage(cover, 243, 266, 486, 486);
+                
+                const codeImage = imageDetails.code;
+                ctx.save();
+                ctx.globalCompositeOperation = "lighter"; // Ensure only white areas get drawn
+                ctx.drawImage(codeImage, 234, 123, 505, 127);
+                ctx.restore(); // Reset the composite operation
+
                 ctx.font = "38px Arial";
                 ctx.fillStyle = "white";
                 ctx.textBaseline = "top";

@@ -12,7 +12,7 @@ function getId(input: string) {
 }
 
 export default function ImgCreatorHandler() {
-    const [imageDetails, setImageDetails] = useState<{ img: HTMLImageElement, title: string, artist: string, length: number } | undefined>();
+    const [imageDetails, setImageDetails] = useState<{ img: HTMLImageElement, code: HTMLImageElement, title: string, artist: string, length: number } | undefined>();
     const [apiResponse, setApiResponse] = useState<any>(undefined);
 
     const handleChange = (e: any) => {
@@ -33,12 +33,13 @@ export default function ImgCreatorHandler() {
         const title = apiResponse.name;
 
         if (!imgSrc || !artist || !title) return;
-
+        const imgCode = new Image();
+        imgCode.src = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:" + apiResponse.id;
         const img = new Image();
         img.src = imgSrc;
         img.crossOrigin = "anonymous";
         img.onload = () => {
-            setImageDetails({ img: img, title: title, artist: artist, length: 165 });
+            setImageDetails({ img: img, code: imgCode, title: title, artist: artist, length: 165 });
         };
     }, [apiResponse]);
 
@@ -49,10 +50,10 @@ export default function ImgCreatorHandler() {
             }}>
                 <div className="col-md-5 col-12 p-5">
                     <h3 style={{ marginRight: "auto", textAlign: "left" }}>Your Artist, Your Music</h3>
-                    <p style={{ marginRight: "auto", textAlign: "left"}}>Sometimes, you just need to let your inner creativity strike. YOU, are the person who wants everything tailor made to their liking, and we love that! All you need is the spotify link of your favourite music, a little artistic flavour and voilà, the perfect decoration is born!</p>
-                    <Input handleChange={handleChange} title="Link"/>
+                    <p style={{ marginRight: "auto", textAlign: "left" }}>Sometimes, you just need to let your inner creativity strike. YOU, are the person who wants everything tailor made to their liking, and we love that! All you need is the spotify link of your favourite music, a little artistic flavour and voilà, the perfect decoration is born!</p>
+                    <Input handleChange={handleChange} title="Link" />
                     <div className="d-flex justify-content-end">
-                        <Button text="Order" onClick={()=>{}} buttonStyle="btn-success" />
+                        <Button text="Order" onClick={() => { }} buttonStyle="btn-success" />
                     </div>
                 </div>
                 <div className="col-2">

@@ -8,7 +8,7 @@
 
 
 
-import { add, cond, cos, cross, div, float, floor, If, log2, max, min, mul, pow, remap, sin, sub, tslFn, uniform, vec3, vec4 } from 'three/nodes';
+import { add, cond, cos, cross, div, float, floor, If, log2, max, min, mul, pow, remap, sin, sub, tslFn, uniform, vec3, vec4 } from 'three/examples/jsm/nodes/Nodes';
 import { mx_perlin_noise_float as noise } from 'three/addons/nodes/materialx/lib/mx_noise.js';
 
 
