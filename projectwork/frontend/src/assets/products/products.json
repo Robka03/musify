@@ -3,7 +3,7 @@
         {
             "id": 1,
             "title": "Kapitány Máté - Sári",
-            "description": "Description of Product 1",
+            "description": "A vibrant and dynamic track that combines electrifying rhythms with an experimental edge. The bold red-and-gray swirling artwork mirrors the song's energetic and passionate essence, offering a visual counterpart to its engaging sound. This track stands out for its innovative production and emotive performance, making it a memorable addition to contemporary music enthusiasts' playlists. Perfect for those who appreciate music that pushes boundaries while remaining deeply relatable.",
             "price": 7000,
             "category": "Playing",
             "image": "matefinal.png",
@@ -12,7 +12,7 @@
         {
             "id": 2,
             "title": "ibbigang - Tetko",
-            "description": "Description of Product 2",
+            "description": "A bold and expressive track that captures the raw energy of individuality and self-expression. With its intriguing artwork featuring a personal tattoo theme, the song delves into themes of identity, creativity, and living authentically. The fusion of vibrant beats and introspective lyrics makes 'Tetko' a standout piece that resonates with listeners seeking an edgy and innovative vibe. A must-have piece for fans of daring and impactful music.",
             "price": 7000,
             "category": "Playing",
             "image": "tetkofinal.png",
@@ -21,7 +21,7 @@
         {
             "id": 3,
             "title": "veryraredome - 7 A SZÁMOM",
-            "description": "Description of Product 3",
+            "description": "A captivating blend of emotion and rhythm, showcasing the artist's unique sound. This track combines haunting melodies with introspective lyrics, creating a powerful auditory experience. The immersive green-themed artwork reflects the song's dynamic energy and depth, making it a visual and musical journey that resonates with listeners. Perfect for those seeking a fresh and meaningful addition to their room.",
             "price": 7000,
             "category": "Playing",
             "image": "7aszamomfinal.png",
