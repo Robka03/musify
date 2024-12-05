@@ -14,11 +14,10 @@ interface FormCheckBoxGroupProps {
     idAndName: string
     value: boolean
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    required?: boolean
     placeholder?: string
 }
 
-export function FormCheckboxGroup({ label, idAndName, value, onChange, required = true }: FormCheckBoxGroupProps) {
+export function FormCheckboxGroup({ label, idAndName, value, onChange }: FormCheckBoxGroupProps) {
     return (
         <div className={classes.formGroup + " d-flex justify-content-between"}>
             <label className={classes.checkboxLabel}>
@@ -30,6 +29,7 @@ export function FormCheckboxGroup({ label, idAndName, value, onChange, required 
                 name={idAndName}
                 checked={value}
                 onChange={onChange}
+                required
                 className={classes.checkbox}
                 style={{ marginBottom: ".5rem", width: "auto" }}
             />

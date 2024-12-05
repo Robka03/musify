@@ -1,16 +1,10 @@
-import React, { HTMLInputTypeAttribute, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { HTMLInputTypeAttribute, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "../../common/button/Button";
 import { FormGroup, FormCheckboxGroup } from "../formcomponents/formComponents"
 import Form from "../formcomponents/Form";
-import { registerUser } from "../../network/registerUser";
-import { useUser } from "../context/UserContext";
 
 const RegistrationForm = () => {
-  const { user, isLoggedIn } = useUser();
-  useEffect(() => {
-    if (user || isLoggedIn) navigate("/");
-  }, [user, isLoggedIn]);
   const [formData, setFormData] = useState({
     lastName: "",
     firstName: "",
@@ -22,7 +16,6 @@ const RegistrationForm = () => {
     subscribe: false
   });
 
-  const navigate = useNavigate();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.type == "checkbox") {
       setFormData({
@@ -38,8 +31,7 @@ const RegistrationForm = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("A jelszavak nem egyeznek!");
@@ -49,15 +41,8 @@ const RegistrationForm = () => {
       alert("El kell fogadnia az Adatvédelmi Tájékoztatót!");
       return;
     }
+    alert("Sikeres regisztráció!");
     console.log(formData);
-    try {
-      const response = await registerUser("http://localhost:8080/api/users/register", formData.firstName, formData.email, formData.password, formData.firstName, formData.lastName, formData.dateOfBirth, formData.subscribe) as any;
-      if (response.ok) navigate("/login");
-    }
-    catch(e:any) {
-      alert("Registration failed "+e.message);
-    }
-    
   };
 
   return (
@@ -72,10 +57,10 @@ const RegistrationForm = () => {
         <FormGroup label="Date of birth" type="date" idAndName="dateofbirth" defaultValue={formData.dateOfBirth} onChange={handleChange} />
 
         <FormCheckboxGroup label={<div>I agree to the <Link to="#">Privacy Policy</Link></div>} value={formData.privacyPolicy} idAndName="privacyPolicy" onChange={handleChange} />
-        <FormCheckboxGroup label="Subscribe to our newsletter" value={formData.subscribe} idAndName="subscribe" onChange={handleChange} required={false} />
+        <FormCheckboxGroup label="Subscribe to our newsletter" value={formData.subscribe} idAndName="subscribe" onChange={handleChange} />
 
         <div className="w-100 d-flex justify-content-end">
-          <Button text="Register" onClick={() => { }} buttonStyle="btn-success" />
+          <Button text="Register" onClick={() => {/*create user api*/ }} buttonStyle="btn-success" />
         </div>
       </Form>
 

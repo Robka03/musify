@@ -1,11 +1,9 @@
-package com.musify.projectwork.model;
-
-import java.time.LocalDateTime;
+package com.musify.projectwork;
 import jakarta.persistence.*;
-
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders") // Optional: Specify a table name if needed
 public class OrderEntity {
 
     @Id
@@ -13,7 +11,7 @@ public class OrderEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false) // Maps user_id to UserEntity
     private UserEntity user;
 
     @Column(name = "address_id", nullable = false)
@@ -23,11 +21,12 @@ public class OrderEntity {
     private Long paymentId;
 
     @Column(name = "ordered_at", nullable  = false)
-    private LocalDateTime orderedAt;
+    private LocalDateTime orderedAt; // Changed from `Time` to `LocalDateTime` for better precision
 
     @Column(name = "status", nullable = false)
     private Long status;
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }

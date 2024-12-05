@@ -1,56 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classes from "./Login.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LiquidWarp from "../liquidwarp/LiquidWarp";
 import * as THREE from "three";
 import { FormGroup } from "../formcomponents/formComponents";
 import Form from "../formcomponents/Form";
 import Button from "../../common/button/Button";
-import { loginUser } from "../../network/loginUser";
-import { useUser } from "../context/UserContext";
 
 const Login = () => {
-  const { user, isLoggedIn } = useUser();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (user || isLoggedIn) navigate("/");
-  }, [user, isLoggedIn]);
+
   return (
-    <>
-      {!user && !isLoggedIn &&
-        <div>
-          <LoginContainer />
-          <div className="position-absolute start-0 top-0 z-0">
-            <LiquidWarp background={new THREE.Color(0, 0, 0)} color={new THREE.Color(1, 1, 1)} seed={0} />
-          </div>
-        </div >
-      }
-    </>
-
-
+    <div>
+      <LoginContainer />
+      <div className="position-absolute start-0 top-0 z-0">
+        <LiquidWarp background={new THREE.Color(0, 0, 0)} color={new THREE.Color(1, 1, 1)} seed={0} />
+      </div>
+    </div >
 
 
   );
 };
 
 function LoginContainer() {
-  const { setIsLoggedIn} = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await loginUser(email, password) as any;
-      setIsLoggedIn(true);
-      if (response.token) navigate("/");
-    }
-    catch (e: any) {
-      alert("Login failed");
-    }
-
+    alert(`Email: ${email}\nPassword: ${password}`);
   };
 
   return (
@@ -71,7 +48,7 @@ function LoginContainer() {
       </div>
 
       <div className="d-flex justify-content-end">
-        <Button text="Log In" buttonStyle="btn-success" onClick={() => { }} />
+        <Button text="Log In" buttonStyle="btn-success" onClick={() => {/*LOGIN */ }} />
       </div>
 
     </Form>
