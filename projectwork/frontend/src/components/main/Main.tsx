@@ -16,8 +16,7 @@ export default function Main() {
             <div className="container p-0" style={{ backgroundColor: "#f6f9fc" }}>
                 <ProductContainerHandler />
             </div>
-            <div className="position-relative" style={{height:"50vh"}}>
-            <div className="position-absolute"><LiquidWarp seed={500} color={new THREE.Color(0,1,1)} background={new THREE.Color(0,0,0)}/></div>
+            <div className="position-relative" style={{height:"50vh"}}><LiquidWarp seed={500} color={new THREE.Color(0,1,1)} background={new THREE.Color(0,0,0)}/>
             </div>
             
             <div className="container p-0" style={{ backgroundColor: "#f6f9fc" }}>
