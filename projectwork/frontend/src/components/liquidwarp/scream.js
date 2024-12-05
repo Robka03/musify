@@ -4,8 +4,9 @@
 
 
 import { Color } from "three";
-import { add, cos, exp, mix, positionLocal, sin, tslFn } from 'three/nodes';
+import { add, cos, exp, mix, positionLocal, sin, tslFn } from 'three/examples/jsm/nodes/Nodes.js';
 import { hsl, noise, toHsl } from './tsl-utils.js';
+
 
 
 var scream = tslFn( ( params ) => {

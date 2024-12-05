@@ -1,18 +1,10 @@
-import { useEffect, useState, useRef } from "react";
-import * as THREE from 'three';
-import * as NODES from 'three/examples/jsm/nodes/Nodes';
-
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import * as NODES from "three/examples/jsm/nodes/Nodes";
 import WebGPURenderer from "three/examples/jsm/renderers/webgpu/WebGPURenderer.js";
-
 import { scream as holograph } from "./scream.js";
 
-// const module = await import(
-//   "https://cdn.jsdelivr.net/npm/tsl-textures@0.6.0/src/scream.js"
-// );
-
-// const holograph = module.scream;
-
-const LiquidWarp = () => {
+const LiquidWarp = ({ seed, color, background }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -22,79 +14,72 @@ const LiquidWarp = () => {
     const innerHeight = window.innerHeight;
 
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(30, innerWidth / innerHeight);
     camera.position.set(0, 0, 3);
 
-    const renderer = new WebGPURenderer({ antialias: true });
-    if (!renderer) return;
+    const renderer = new WebGPURenderer({ antialias: true })
+
+    if (!renderer) {
+      console.error("Renderer could not be initialized.");
+      return;
+    }
+
     renderer.setSize(innerWidth, innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       const innerWidth = window.innerWidth;
       const innerHeight = window.innerHeight;
       camera.aspect = innerWidth / innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(innerWidth, innerHeight);
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
 
     const holoParams = {
       scale: 1,
       variety: 1,
-      color: new THREE.Color(0, 1, 1),
-      background: new THREE.Color(0, 0, 0),
+      color: color,
+      background: background,
       seed: NODES.uniform(0),
     };
 
     const colorNode = holograph(holoParams);
 
-    var holoPlate = new THREE.Mesh(
+    const holoPlate = new THREE.Mesh(
       new THREE.PlaneGeometry(5, 5),
       new NODES.MeshPhysicalNodeMaterial({
         side: THREE.DoubleSide,
-        colorNode: colorNode
+        colorNode: colorNode,
       })
     );
-    scene.add(holoPlate);
-    function animationLoop(t) {
-      holoParams.seed.value = 100 * Math.sin(t / 1500000);
-      renderer.render(scene, camera);
-    }
 
+    scene.add(holoPlate);
+
+    const animationLoop = (t) => {
+      holoParams.seed.value = seed + 100 * Math.sin(t / 10000000);
+      renderer.render(scene, camera);
+    };
+    
     renderer.setAnimationLoop(animationLoop);
 
-    return () => {
-      renderer.setAnimationLoop(null); // Stop the animation loop
-
-      // Dispose of materials and geometries in the scene
-      scene.traverse((object) => {
-        if (object.geometry) object.geometry.dispose();
-        if (object.material) {
-          if (Array.isArray(object.material)) {
-            object.material.forEach((mat) => mat.dispose());
-          } else {
-            object.material.dispose();
-          }
-        }
-      });
-
-      // Dispose the renderer
-      try{
-        renderer.dispose(); //FIXME
+    return async () => {
+      console.log("Renderer _animation:", renderer._animation);
+      window.removeEventListener("resize", handleResize);
+      renderer.setAnimationLoop(null);
+      if (renderer && renderer.dispose) {
+        await renderer.setAnimationLoop(null);
+        renderer.dispose();
       }
-      catch(e){}
-      
 
-      // Remove the renderer DOM element
-      if (renderer.domElement) {
+      if (renderer && renderer.domElement) {
         containerRef.current?.removeChild(renderer.domElement);
       }
-
     };
-  }, []); // Depend on holograph to ensure it's loaded
+  }, [seed, color, background]);
 
-  return <div ref={containerRef} style={{ width: "100vw", height: "50vh", overflow:"hidden"}} />;
+  return <div ref={containerRef} style={{ width: "100vw", height: "50vh", overflow: "hidden" }} />;
 };
 
 export default LiquidWarp;
