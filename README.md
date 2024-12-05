@@ -6,7 +6,7 @@ Tantárgy kódja: **INBMM0523-21**
 Tantárgyat oktató tanár neve: **Dr. Kocsis Gergely**  
 
 ## Projektünk logója
-<img src="https://github.com/Robka03/musify/blob/MIDavidIT-patch-1/Musify-logo.png" alt="Musify logó" width="200">
+<img src="https://github.com/Robka03/musify/blob/main/Musify-logo.png" alt="Musify logó" width="200">
 
 ## Tagok
 Lipták Róbert, Molnár Attila, Tóth Gábor, Máté István Dávid
