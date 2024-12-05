@@ -1,0 +1,168 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9; /* Világos háttér */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #333; /* Szöveg színe */
+
+
+}
+
+h2 {
+  color: #333;
+  font-size: 36px; /* Kisebb cím */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Kisebb Konténer */
+.login-container {
+  background-color: #fff; /* Fehér háttér */
+  border-radius: 12px; /* Kerekített szélek */
+  padding: 60px; /* Kevesebb padding */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Árnyék */
+  width: 100%;
+  max-width: 600px; /* Kisebb max szélesség */
+}
+
+/* Űrlap */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Kisebb távolság az elemek között */
+}
+
+.form-group {
+  width: 100%; /* A mezők szélessége */
+  max-width: 500px; /* Maximális szélesség */
+}
+
+label {
+  display: block;
+  font-size: 18px; /* Kisebb szöveg */
+  margin-bottom: 10px;
+  color: #555; /* Halványabb szöveg */
+}
+
+input {
+  width: 100%;
+  padding: 15px; /* Kevesebb padding */
+  font-size: 18px; /* Kisebb betűméret */
+  border: 1px solid #ccc; /* Szürke szegély */
+  border-radius: 6px; /* Kerekített szélek */
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #1DB954; /* Spotify zöld fókuszban */
+  outline: none;
+}
+
+/* Gomb */
+.login-button {
+  width: 100%;
+  max-width: 500px; /* Kisebb gomb szélesség */
+  padding: 15px; /* Kevesebb padding */
+  font-size: 18px; /* Kisebb betűméret */
+  font-weight: bold;
+  background-color: #1DB954; /* Spotify zöld gomb */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #14833b; /* Sötétebb zöld hover állapotban */
+}
+
+.login-button:active {
+  background-color: #0f5e2c; /* Még sötétebb zöld */
+}
+
+/* Jelszó mező csoport */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.password-wrapper input {
+  padding-right: 60px; /* Hely a szem ikonhoz */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px; /* Kisebb ikon */
+  color: #555;
+  padding: 5px;
+}
+
+.toggle-password:hover {
+  color: #1DB954; /* Spotify zöld hover állapotban */
+}
+
+/* Reszponzivitás kisebb képernyőkre */
+@media (max-width: 500px) {
+  .login-container {
+    padding: 30px; /* Csökkentett padding mobilon */
+    max-width: 90%; /* Mobilhoz igazodik */
+  }
+
+  h2 {
+    font-size: 28px; /* Kisebb cím mobilon */
+  }
+
+  input, .login-button {
+    font-size: 16px; /* Kisebb betűméret mobilon */
+  }
+
+  .toggle-password {
+    font-size: 18px; /* Mobilon kisebb ikon */
+  }
+
+  .form-group {
+    max-width: 100%; /* Szélesség mobilon */
+  }
+}
+
+/* Linkek stílusa */
+.form-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Távolság a mezőktől */
+  font-size: 16px;
+}
+
+.form-links a {
+  text-decoration: none;
+  color: #1DB954; /* Spotify zöld szöveg */
+  transition: color 0.3s ease;
+}
+
+.form-links a:hover {
+  color: #14833b; /* Sötétebb zöld hover állapotban */
+}
+
+.form-links span {
+  margin: 0 10px; /* Elválasztás a linkek között */
+}
