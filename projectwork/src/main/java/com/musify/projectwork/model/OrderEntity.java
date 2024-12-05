@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "orders") // Optional: Specify a table name if needed
+@Table(name = "orders")
 public class OrderEntity {
 
     @Id
@@ -20,7 +20,7 @@ public class OrderEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false) // Maps user_id to UserEntity
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     @Column(name = "address_id", nullable = false)
@@ -30,12 +30,11 @@ public class OrderEntity {
     private Long paymentId;
 
     @Column(name = "ordered_at", nullable  = false)
-    private LocalDateTime orderedAt; // Changed from `Time` to `LocalDateTime` for better precision
+    private LocalDateTime orderedAt;
 
     @Column(name = "status", nullable = false)
     private Long status;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
