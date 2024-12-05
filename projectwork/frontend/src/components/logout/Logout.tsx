@@ -10,6 +10,7 @@ export default function Logout() {
         localStorage.removeItem("user");
         setIsLoggedIn(false);
         setUser(null);
+        
         navigate("/");
     },[])
     return (
