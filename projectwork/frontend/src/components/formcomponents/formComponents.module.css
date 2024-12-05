@@ -1,0 +1,31 @@
+.title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.checkbox {
+    margin-right: 10px;
+}

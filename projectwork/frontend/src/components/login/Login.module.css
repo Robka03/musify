@@ -26,7 +26,7 @@ h2 {
 }
 
 /* Kisebb Konténer */
-.login-container {
+.loginContainer {
   background-color: #fff; /* Fehér háttér */
   border-radius: 12px; /* Kerekített szélek */
   padding: 60px; /* Kevesebb padding */
@@ -36,14 +36,14 @@ h2 {
 }
 
 /* Űrlap */
-.login-form {
+.loginForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px; /* Kisebb távolság az elemek között */
 }
 
-.form-group {
+.formGroup {
   width: 100%; /* A mezők szélessége */
   max-width: 500px; /* Maximális szélesség */
 }
@@ -70,7 +70,7 @@ input:focus {
 }
 
 /* Gomb */
-.login-button {
+.loginButton {
   width: 100%;
   max-width: 500px; /* Kisebb gomb szélesség */
   padding: 15px; /* Kevesebb padding */
@@ -84,26 +84,26 @@ input:focus {
   transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
+.loginButton:hover {
   background-color: #14833b; /* Sötétebb zöld hover állapotban */
 }
 
-.login-button:active {
+.loginButton:active {
   background-color: #0f5e2c; /* Még sötétebb zöld */
 }
 
 /* Jelszó mező csoport */
-.password-wrapper {
+.passwordWrapper {
   position: relative;
   width: 100%;
   max-width: 500px;
 }
 
-.password-wrapper input {
+.passwordWrapper input {
   padding-right: 60px; /* Hely a szem ikonhoz */
 }
 
-.toggle-password {
+.togglePassword {
   position: absolute;
   right: 20px;
   top: 50%;
@@ -116,13 +116,13 @@ input:focus {
   padding: 5px;
 }
 
-.toggle-password:hover {
+.togglePassword:hover {
   color: #1DB954; /* Spotify zöld hover állapotban */
 }
 
 /* Reszponzivitás kisebb képernyőkre */
 @media (max-width: 500px) {
-  .login-container {
+  .loginContainer {
     padding: 30px; /* Csökkentett padding mobilon */
     max-width: 90%; /* Mobilhoz igazodik */
   }
@@ -131,21 +131,21 @@ input:focus {
     font-size: 28px; /* Kisebb cím mobilon */
   }
 
-  input, .login-button {
+  input, .loginButton {
     font-size: 16px; /* Kisebb betűméret mobilon */
   }
 
-  .toggle-password {
+  .togglePassword {
     font-size: 18px; /* Mobilon kisebb ikon */
   }
 
-  .form-group {
+  .formGroup {
     max-width: 100%; /* Szélesség mobilon */
   }
 }
 
 /* Linkek stílusa */
-.form-links {
+.formLinks {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,16 +153,16 @@ input:focus {
   font-size: 16px;
 }
 
-.form-links a {
+.formLinks a {
   text-decoration: none;
   color: #1DB954; /* Spotify zöld szöveg */
   transition: color 0.3s ease;
 }
 
-.form-links a:hover {
+.formLinks a:hover {
   color: #14833b; /* Sötétebb zöld hover állapotban */
 }
 
-.form-links span {
+.formLinks span {
   margin: 0 10px; /* Elválasztás a linkek között */
 }
