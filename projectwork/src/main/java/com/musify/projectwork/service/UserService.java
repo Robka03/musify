@@ -1,11 +1,12 @@
 package com.musify.projectwork.service;
 
-import com.musify.projectwork.UserEntity;
-import com.musify.projectwork.repository.UserRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.musify.projectwork.model.UserEntity;
+import com.musify.projectwork.repository.UserRepository;
 
 @Service
 public class UserService {
