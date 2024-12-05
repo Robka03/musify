@@ -14,7 +14,7 @@ export default function Navbar() {
                     <ul className="d-flex flex-row m-0">
                         <NavbarItem text="About" redirect="" />
                         <NavbarItem text="Cart" redirect="" />
-                        <NavbarItem text={false ? "Profile" : "Login"} redirect={false ? "/login" : "profile"} />
+                        <NavbarItem text={false ? "Profile" : "Login"} redirect={false ? "/profile" : "/login"} />
                     </ul>
                 </div>
             </nav>
