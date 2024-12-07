@@ -1,3 +1,6 @@
+import config from '../config';
+
+
 export async function getCurrentUser() {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -6,7 +9,7 @@ export async function getCurrentUser() {
     }
 
     try {
-        const response = await fetch("http://localhost:8080/api/users/me", {
+        const response = await fetch(config.apiBaseUrl+"/api/users/me", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,

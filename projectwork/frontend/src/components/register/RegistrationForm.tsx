@@ -5,6 +5,7 @@ import { FormGroup, FormCheckboxGroup } from "../formcomponents/formComponents"
 import Form from "../formcomponents/Form";
 import { registerUser } from "../../network/registerUser";
 import { useUser } from "../context/UserContext";
+import config from '../../config';
 
 const RegistrationForm = () => {
   const { user, isLoggedIn } = useUser();
@@ -51,7 +52,7 @@ const RegistrationForm = () => {
     }
     console.log(formData);
     try {
-      const response = await registerUser("http://localhost:8080/api/users/register", formData.firstName, formData.email, formData.password, formData.firstName, formData.lastName, formData.dateOfBirth, formData.subscribe) as any;
+      const response = await registerUser(config.apiBaseUrl+"/api/users/register", formData.firstName, formData.email, formData.password, formData.firstName, formData.lastName, formData.dateOfBirth, formData.subscribe) as any;
       if (response.ok) navigate("/login");
     }
     catch(e:any) {

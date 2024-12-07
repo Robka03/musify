@@ -6,7 +6,7 @@ import ProductDashes from "../productcontainer/ProductDashes";
 import ImageContainer from "../productcontainer/ImageContainer";
 import Input from "../../common/input/Input"
 import Button from "../../common/button/Button";
-
+import config from '../../config';
 function getId(input: string) {
     return input.match(/track\/([A-Za-z0-9]{22})\?si=/)?.[1];
 }
@@ -18,7 +18,7 @@ export default function ImgCreatorHandler() {
     const handleChange = (e: any) => {
         const spotifyTrackUrlRegex = /^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]{22}\?si=[A-Za-z0-9]{16}$/;
         if (spotifyTrackUrlRegex.test(e.target.value)) {
-            const api = "http://localhost:8080/api/spotify/track/" + getId(e.target.value);
+            const api = config.apiBaseUrl + "/api/spotify/track/" + getId(e.target.value);
             console.log(api);
             fetch(api).then(res => res.json()).then(data => setApiResponse(data));
         }
@@ -26,21 +26,26 @@ export default function ImgCreatorHandler() {
     };
 
     useEffect(() => {
-        if (!apiResponse) return;
-        if (!apiResponse.album) return;
-        const imgSrc = apiResponse.album.images[0].url;
-        const artist = apiResponse.artists[0].name;
-        const title = apiResponse.name;
+        const apiHandler = async () => {
+            if (!apiResponse) return;
+            if (!apiResponse.album) return;
+            const imgSrc = apiResponse.album.images[0].url;
+            const artist = apiResponse.artists[0].name;
+            const title = apiResponse.name;
 
-        if (!imgSrc || !artist || !title) return;
-        const imgCode = new Image();
-        imgCode.src = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:" + apiResponse.id;
-        const img = new Image();
-        img.src = imgSrc;
-        img.crossOrigin = "anonymous";
-        img.onload = () => {
-            setImageDetails({ img: img, code: imgCode, title: title, artist: artist, length: 165 });
-        };
+            if (!imgSrc || !artist || !title) return;
+            const imgCode = new Image();
+            const codeSrc = await fetch("https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:" + apiResponse.id);
+            imgCode.src = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:" + apiResponse.id;
+            const img = new Image();
+            img.src = imgSrc;
+            img.crossOrigin = "anonymous";
+            img.onload = () => {
+                setImageDetails({ img: img, code: imgCode, title: title, artist: artist, length: 165 });
+            };
+        }
+        apiHandler();
+
     }, [apiResponse]);
 
     return (

@@ -1,3 +1,5 @@
+import config from '../config';
+
 export async function loginUser(email: string, password: string) {
     const loginDetails = {
         email,
@@ -5,7 +7,7 @@ export async function loginUser(email: string, password: string) {
     };
 
     try {
-        const response = await fetch("http://localhost:8080/api/auth/login", {
+        const response = await fetch(config.apiBaseUrl+"/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

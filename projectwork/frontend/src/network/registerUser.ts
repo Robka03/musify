@@ -1,3 +1,5 @@
+import config from '../config';
+
 export async function registerUser(apiUrl: string, username: string, email: string, password: string, firstname: string, lastname: string, dob: string, subscription: boolean) {
     // const username = "admin";
     // const password = "admin123"; // Replace with your generated password
@@ -12,7 +14,7 @@ export async function registerUser(apiUrl: string, username: string, email: stri
         "subscription": true
     }
     try {
-        const response = await fetch("http://localhost:8080/api/auth/register", {
+        const response = await fetch(config.apiBaseUrl + "/api/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

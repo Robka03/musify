@@ -1,6 +1,6 @@
 // src/context/UserContext.tsx
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-
+import config from '../../config';
 // Define the shape of the user object
 interface User {
     id: string;
@@ -45,7 +45,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         if(!isLoggedIn) return;
-        fetch("http://localhost:8080/api/users/me", {
+        fetch(config.apiBaseUrl+"/api/users/me", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`,

@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFound from './components/notfound/NotFound';
 import Login from './components/login/Login';
 import RegistrationContainer from './components/register/RegistrationContainer';
-import { getCurrentUser } from './network/currentUser';
 import { useEffect } from 'react';
 import {  useUser } from './components/context/UserContext';
 import Logout from './components/logout/Logout';
