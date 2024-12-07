@@ -31,6 +31,9 @@ public class UserEntity {
     @Column(name = "subscription", nullable = false)
     private boolean subscription;
 
+    @Column(name = "favorite_music", nullable = true)
+    private String favmusic;
+
     public Long getId() {
         return id;
     }
@@ -85,6 +88,14 @@ public class UserEntity {
 
     public void setDob(LocalDateTime dob) {
         this.dob = dob;
+    }
+
+    public String getFavmusic() {
+        return favmusic;
+    }
+
+    public void setFavmusic(String favmusic) {
+        this.favmusic = favmusic;
     }
 
     public boolean isSubscription() {
