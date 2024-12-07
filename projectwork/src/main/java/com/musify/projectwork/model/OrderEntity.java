@@ -2,8 +2,11 @@ package com.musify.projectwork.model;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
-
+@Data
+@Builder
 @Entity
 @Table(name = "orders")
 public class OrderEntity {
@@ -27,52 +30,4 @@ public class OrderEntity {
 
     @Column(name = "status", nullable = false)
     private Long status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUserId(UserEntity userId) {
-        this.user = userId;
-    }
-
-    public Long getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
-    }
-
-    public Long getPaymentId() {
-        return paymentId;
-    }
-
-    public void setPaymentId(Long paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public LocalDateTime getOrderedAt() {
-        return orderedAt;
-    }
-
-    public void setOrderedAt(LocalDateTime orderedAt) {
-        this.orderedAt = orderedAt;
-    }
-
-    public Long getStatus() {
-        return status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
-    }
 }

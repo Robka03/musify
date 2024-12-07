@@ -1,7 +1,11 @@
 package com.musify.projectwork.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 @Entity
 @Table(name = "address")
 public class AddressEntity {
@@ -25,52 +29,4 @@ public class AddressEntity {
 
     @Column(name = "address_line", nullable = false)
     private String addressLine;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UserEntity getUseriId() {
-        return user;
-    }
-
-    public void setUseriId(UserEntity useriId) {
-        this.user = useriId;
-    }
-
-    public Integer getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
-    public String getAddressLine() {
-        return addressLine;
-    }
-
-    public void setAddressLine(String addressLine) {
-        this.addressLine = addressLine;
-    }
 }
