@@ -7,6 +7,9 @@ import ImageContainer from "../productcontainer/ImageContainer";
 import Input from "../../common/input/Input"
 import Button from "../../common/button/Button";
 import config from '../../config';
+import { useCart } from "../context/CartContext";
+
+
 function getId(input: string) {
     return input.match(/track\/([A-Za-z0-9]{22})\?si=/)?.[1];
 }
@@ -14,6 +17,7 @@ function getId(input: string) {
 export default function ImgCreatorHandler() {
     const [imageDetails, setImageDetails] = useState<{ img: HTMLImageElement, code: HTMLImageElement, title: string, artist: string, length: number } | undefined>();
     const [apiResponse, setApiResponse] = useState<any>(undefined);
+    const { addProduct } = useCart();
 
     const handleChange = (e: any) => {
         const spotifyTrackUrlRegex = /^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]{22}\?si=[A-Za-z0-9]{16}$/;
@@ -58,7 +62,9 @@ export default function ImgCreatorHandler() {
                     <p style={{ marginRight: "auto", textAlign: "left" }}>Sometimes, you just need to let your inner creativity strike. YOU, are the person who wants everything tailor made to their liking, and we love that! All you need is the spotify link of your favourite music, a little artistic flavour and voilà, the perfect decoration is born!</p>
                     <Input handleChange={handleChange} title="Link" />
                     <div className="d-flex justify-content-end">
-                        <Button text="Order" onClick={() => { }} buttonStyle="btn-success" />
+                        <Button text="Order" onClick={() => { addProduct({ image: ":D", product_type: 1, quantity: 1 }) }} buttonStyle="btn-success" />
+                        <Button text="Order" onClick={() => { addProduct({ image: ":P", product_type: 1, quantity: 1 }) }} buttonStyle="btn-success" />
+                        <Button text="Order" onClick={() => { addProduct({ image: ":D", product_type: 21, quantity: 1 }) }} buttonStyle="btn-success" />
                     </div>
                 </div>
                 <div className="col-2">

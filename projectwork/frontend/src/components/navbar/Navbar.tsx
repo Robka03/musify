@@ -3,9 +3,11 @@ import logo from "../../assets/logo1024.png"
 import classes from "./Navbar.module.css"
 import { Link } from "react-router-dom"
 import { useUser } from '../context/UserContext';
+import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
     const { user, isLoggedIn } = useUser();
+    const { products } = useCart();
 
     return (
         <>
@@ -16,6 +18,7 @@ export default function Navbar() {
                         <NavbarItem text="About" redirect="" />
                         <NavbarItem text="Cart" redirect="" />
                         {isLoggedIn && <NavbarItem text="Profile" redirect="/profile" />}
+                        {products && <NavbarItem text={"Cart (" + products.length + ")"} redirect="/cart" />}
                         <NavbarItem text={isLoggedIn ? "Logout" : "Login"} redirect={isLoggedIn ? "/logout" : "/login"} />
                     </ul>
                 </div>

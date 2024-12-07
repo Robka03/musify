@@ -10,11 +10,11 @@ import { useEffect } from 'react';
 import {  useUser } from './components/context/UserContext';
 import Logout from './components/logout/Logout';
 import Profile from './components/profile/Profile';
+import Cart from './components/cart/Cart';
 // import About from './About';
 // import Contact from './Contact';
 
 function App() {
-  const { user, setUser } = useUser();
 
   return (
       <Router>
@@ -26,6 +26,7 @@ function App() {
             <Route path="/register" element={<RegistrationContainer />} />
             <Route path="/logout" element={<Logout/>} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/cart" element={<Cart/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
