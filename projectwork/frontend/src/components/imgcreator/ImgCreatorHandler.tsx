@@ -62,9 +62,7 @@ export default function ImgCreatorHandler() {
                     <p style={{ marginRight: "auto", textAlign: "left" }}>Sometimes, you just need to let your inner creativity strike. YOU, are the person who wants everything tailor made to their liking, and we love that! All you need is the spotify link of your favourite music, a little artistic flavour and voilà, the perfect decoration is born!</p>
                     <Input handleChange={handleChange} title="Link" />
                     <div className="d-flex justify-content-end">
-                        <Button text="Order" onClick={() => { addProduct({ image: ":D", product_type: 1, quantity: 1 }) }} buttonStyle="btn-success" />
-                        <Button text="Order" onClick={() => { addProduct({ image: ":P", product_type: 1, quantity: 1 }) }} buttonStyle="btn-success" />
-                        <Button text="Order" onClick={() => { addProduct({ image: ":D", product_type: 21, quantity: 1 }) }} buttonStyle="btn-success" />
+                        <Button text="Order" onClick={() => { addProduct({ image: "http://localhost:3000/matefinal.png", product_type: 1, quantity: 1 }) }} buttonStyle="btn-success" />
                     </div>
                 </div>
                 <div className="col-2">
