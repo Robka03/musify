@@ -10,6 +10,7 @@ interface User {
     lastname: string;
     dob: string;
     subscription: boolean;
+    image: string;
     [key: string]: any; // Additional fields
 }
 

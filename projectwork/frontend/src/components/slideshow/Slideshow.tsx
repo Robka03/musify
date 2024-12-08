@@ -1,9 +1,7 @@
 import Image from '../../assets/1.png';
 import Image2 from '../../assets/2.png';
 import Image3 from '../../assets/3.png';
-import { createRef, CSSProperties, forwardRef, useEffect, useRef } from 'react';
-import Fluid from 'fluid-canvas';
-import { log } from 'console';
+import { CSSProperties } from 'react';
 
 export default function Slideshow() {
     return (

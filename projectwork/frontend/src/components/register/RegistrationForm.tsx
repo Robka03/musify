@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../common/button/Button";
 import { FormGroup, FormCheckboxGroup } from "../formcomponents/formComponents"
@@ -9,9 +9,11 @@ import config from '../../config';
 
 const RegistrationForm = () => {
   const { user, isLoggedIn } = useUser();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (user || isLoggedIn) navigate("/");
-  }, [user, isLoggedIn]);
+  }, [user, isLoggedIn, navigate]);
   const [formData, setFormData] = useState({
     lastName: "",
     firstName: "",
@@ -23,9 +25,8 @@ const RegistrationForm = () => {
     subscribe: false
   });
 
-  const navigate = useNavigate();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.type == "checkbox") {
+    if (e.target.type === "checkbox") {
       setFormData({
         ...formData,
         [e.target.name]: e.target.checked

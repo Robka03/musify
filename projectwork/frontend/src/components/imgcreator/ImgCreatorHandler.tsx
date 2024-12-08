@@ -8,6 +8,7 @@ import Input from "../../common/input/Input"
 import Button from "../../common/button/Button";
 import config from '../../config';
 import { useCart } from "../context/CartContext";
+import { Product, ProductType } from "../../product/product";
 
 
 function getId(input: string) {
@@ -17,6 +18,7 @@ function getId(input: string) {
 export default function ImgCreatorHandler() {
     const [imageDetails, setImageDetails] = useState<{ img: HTMLImageElement, code: HTMLImageElement, title: string, artist: string, length: number } | undefined>();
     const [apiResponse, setApiResponse] = useState<any>(undefined);
+    const [type] = useState<ProductType>(ProductType.Essential);
     const { addProduct } = useCart();
 
     const handleChange = (e: any) => {
@@ -40,7 +42,7 @@ export default function ImgCreatorHandler() {
             if (!imgSrc || !artist || !title) return;
             const imgCode = new Image();
             const codeSrc = await fetch("https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:" + apiResponse.id);
-            imgCode.src = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/spotify:track:" + apiResponse.id;
+            imgCode.src = codeSrc.url;
             const img = new Image();
             img.src = imgSrc;
             img.crossOrigin = "anonymous";
@@ -60,9 +62,13 @@ export default function ImgCreatorHandler() {
                 <div className="col-md-5 col-12 p-5">
                     <h3 style={{ marginRight: "auto", textAlign: "left" }}>Your Artist, Your Music</h3>
                     <p style={{ marginRight: "auto", textAlign: "left" }}>Sometimes, you just need to let your inner creativity strike. YOU, are the person who wants everything tailor made to their liking, and we love that! All you need is the spotify link of your favourite music, a little artistic flavour and voilà, the perfect decoration is born!</p>
-                    <Input handleChange={handleChange} title="Link" />
+                    <Input onKeyUp={handleChange} handleChange={()=>{}} onBlur={()=>{if (!imageDetails || !imageDetails.img) { alert("Please enter a valid Spotify link"); return; }}} title="Link" />
                     <div className="d-flex justify-content-end">
-                        <Button text="Order" onClick={() => { addProduct({ image: "http://localhost:3000/matefinal.png", product_type: 1, quantity: 1 }) }} buttonStyle="btn-success" />
+                        <Button text="Order" onClick={() => {
+                            if (!imageDetails || !imageDetails.img) { return; }
+                            addProduct(new Product((new Date().toString() + type + imageDetails.title), imageDetails.img.src, type, 1));
+                        }
+                        } buttonStyle="btn-success" />
                     </div>
                 </div>
                 <div className="col-2">

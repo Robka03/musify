@@ -23,7 +23,7 @@ export async function loginUser(email: string, password: string) {
         // Store the token in localStorage or cookies
         localStorage.setItem("token", data.token);      //TODO: Use cookies instead of localStorage AFTER PROJECT SHOWOFF
 
-        return response;
+        return data;
     } catch (error) {
         throw new Error("Error during login:"+ error);
     }

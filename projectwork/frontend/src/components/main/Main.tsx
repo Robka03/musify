@@ -1,5 +1,4 @@
 import Slideshow from "../slideshow/Slideshow"
-import ProductContainer from "../productcontainer/ProductContainer"
 //import matefinal from "../../assets/matefinal.png"
 //import tetkofinal from "../../assets/tetkofinal.png"
 import ProductContainerHandler from "../productcontainer/ProductContainerHandler"

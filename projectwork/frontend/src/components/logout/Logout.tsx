@@ -11,7 +11,7 @@ export default function Logout() {
         setIsLoggedIn(false);
         setUser(null);
         navigate("/");
-    },[])
+    },[navigate, setIsLoggedIn, setUser])
     return (
         <div>
             <h1>Logging out</h1>

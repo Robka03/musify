@@ -1,0 +1,13 @@
+.cardBodyCart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    flex-direction: column;
+    border: #e4e6e9 solid 1px;
+}
+
+.cardCart{
+    border: #e4e6e9 dashed 1px;
+}

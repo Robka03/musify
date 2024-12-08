@@ -8,13 +8,14 @@ import Form from "../formcomponents/Form";
 import Button from "../../common/button/Button";
 import { loginUser } from "../../network/loginUser";
 import { useUser } from "../context/UserContext";
+import { useSearchParams } from "react-router-dom";
 
 const Login = () => {
   const { user, isLoggedIn } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
     if (user || isLoggedIn) navigate("/");
-  }, [user, isLoggedIn]);
+  }, [user, isLoggedIn, navigate]);
   return (
     <>
       {!user && !isLoggedIn &&
@@ -34,21 +35,28 @@ const Login = () => {
 };
 
 function LoginContainer() {
-  const { setIsLoggedIn} = useUser();
+  const { setIsLoggedIn } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await loginUser(email, password) as any;
+      if (!response.token) throw new Error("No token in response");
       setIsLoggedIn(true);
-      if (response.token) navigate("/");
+      if (redirect) { 
+        navigate("/order"); 
+        return; 
+      }
+      navigate("/");
     }
     catch (e: any) {
-      alert("Login failed");
+      alert("Login failed, " + e.message);
     }
 
   };
@@ -77,20 +85,6 @@ function LoginContainer() {
     </Form>
   )
 }
-
-interface FormGroupProps {
-  extraStyle?: string;
-  children: React.ReactNode;
-}
-
-// function FormGroup({ extraStyle = "", children }: FormGroupProps) {
-
-//   return (
-//     <div className={classes.formGroup + " " + extraStyle} >
-//       {children}
-//     </div>
-//   )
-// }
 
 interface PasswordInputProps {
   password: string;

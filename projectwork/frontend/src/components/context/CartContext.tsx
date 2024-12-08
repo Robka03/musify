@@ -1,23 +1,22 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-
-type Product = {
-    product_type: number,
-    quantity: number,
-    image: string
-}
+import { Product } from '../../product/product';
 
 // Define the context structure
 interface CartContextType {
     products: Product[] | null;
     addProduct: (product: Product) => void;
+    removeProduct: (product: Product) => void;
     setProducts: (products: Product[] | null) => void;
+    deleteProduct: (product: Product) => void;
 }
 
 // Create the context with a default value
 const CartContext = createContext<CartContextType | undefined>({
     products: null,
     addProduct: (product: Product) => { },
-    setProducts: (products: Product[] | null) => { }
+    removeProduct: (product: Product) => { },
+    setProducts: (products: Product[] | null) => { },
+    deleteProduct: (product: Product) => { }
 });
 
 // Custom hook to use the CartContext
@@ -44,23 +43,53 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem("products", JSON.stringify(products));
         }
     }, [products]);
-    
+
     const addProduct = (product: Product) => {
 
         setProducts((prevProducts) => {
-            if (!prevProducts || prevProducts.findIndex((p) => p.image === product.image && p.product_type === product.product_type) === -1) {
+            if (!prevProducts || prevProducts.findIndex((p) => p.id === product.id) === -1) {
                 return [...(prevProducts || []), product]
             }
             else {
                 const newProducts = [...(prevProducts || [])];
-                newProducts.find((p) => p.image === product.image && p.product_type === product.product_type)!.quantity += product.quantity;
+                newProducts.find((p) => p.id === product.id)!.quantity += 1;
                 return newProducts;
             }
         });
     }
 
+    const removeProduct = (product: Product) => {
+        setProducts((prevProducts) => {
+            if (!prevProducts || prevProducts.findIndex((p) => p.id === product.id) === -1) {
+                return [...(prevProducts || []), product]
+            }
+            else {
+                const newProducts = [...(prevProducts || [])];
+                const foundProduct:Product | undefined = newProducts.find((p) => p.id === product.id);
+                if (foundProduct && foundProduct.quantity > 1) {
+                    foundProduct.quantity -= 1;
+                }
+                return newProducts;
+            }
+        });
+    }
+
+    const deleteProduct = (product: Product) => {
+        setProducts((prevProducts) => {
+            if (!prevProducts) {
+                return prevProducts;
+            }
+            const newProducts = [...prevProducts];
+            const index = newProducts.findIndex((p) => p.id === product.id);
+            if (index !== -1) {
+                newProducts.splice(index, 1);
+            }
+            return newProducts;
+        });
+    }
+
     return (
-        <CartContext.Provider value={{ products, addProduct, setProducts }}>
+        <CartContext.Provider value={{ products, addProduct, removeProduct, setProducts, deleteProduct }}>
             {children}
         </CartContext.Provider>
     );

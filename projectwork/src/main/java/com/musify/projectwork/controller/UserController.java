@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.musify.projectwork.model.UserEntity;
 import com.musify.projectwork.repository.UserRepository;
 import com.musify.projectwork.security.JwtUtil;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -66,4 +69,22 @@ public class UserController {
 
         return ResponseEntity.ok(user); // Return the user details
     }
+
+    @PostMapping("/image")
+    public ResponseEntity<?> postMethodName(@RequestBody String image, HttpServletRequest request) {
+        System.out.println(image);
+        final String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid Authorization header");
+        }
+
+        String token = authorizationHeader.substring(7);
+        String email = jwtUtil.extractUsername(token); // Extract the username/email from the token
+
+        UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setImage(image);
+        userRepository.save(user);
+        return ResponseEntity.ok(user); // Return the user details
+    }
+    
 }

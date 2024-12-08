@@ -1,4 +1,3 @@
-import { alignPropType } from "react-bootstrap/esm/types";
 import classes from "./ProductContainer.module.css";
 import ProductDashes from "./ProductDashes";
 import ImageContainer from "./ImageContainer";
@@ -16,9 +15,9 @@ interface ProductContainerProps {
 
 export default function ProductContainer({ image, imgDescription, title, description, bg, direction = "left" }: ProductContainerProps) {
     return (
-        <div className={classes.productContainer + " d-flex flex-wrap position-relative " + (direction == "left" ? "flex-row" : "flex-row-reverse")} style={{ background: bg }}>
+        <div className={classes.productContainer + " d-flex flex-wrap position-relative " + (direction === "left" ? "flex-row" : "flex-row-reverse")} style={{ background: bg }}>
             <ImageContainer>
-                <img src={image} className={"rounded-3 " + classes.productImage} />
+                <img src={image} className={"rounded-3 " + classes.productImage} alt="product" />
                 <p className="p-3">{imgDescription}</p>
             </ImageContainer>
             <div className="col-md-7 col-12  p-5 d-flex flex-column align-items-center justify-content-center z-1">

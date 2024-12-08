@@ -63,7 +63,7 @@ const LiquidWarp = ({ seed, color, background }) => {
     };
     
     renderer.setAnimationLoop(animationLoop);
-
+    const container = containerRef.current;
     return async () => {
       console.log("Renderer _animation:", renderer._animation);
       window.removeEventListener("resize", handleResize);
@@ -74,7 +74,7 @@ const LiquidWarp = ({ seed, color, background }) => {
       }
 
       if (renderer && renderer.domElement) {
-        containerRef.current?.removeChild(renderer.domElement);
+        container.removeChild(renderer.domElement);
       }
     };
   }, [seed, color, background]);

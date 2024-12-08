@@ -31,8 +31,16 @@ public class UserEntity {
     @Column(name = "subscription", nullable = false)
     private boolean subscription;
 
-    @Column(name = "favorite_music", nullable = true)
-    private String favmusic;
+    @Column(name = "image", nullable = true)
+    private String image;
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
 
     public Long getId() {
         return id;
@@ -88,14 +96,6 @@ public class UserEntity {
 
     public void setDob(LocalDateTime dob) {
         this.dob = dob;
-    }
-
-    public String getFavmusic() {
-        return favmusic;
-    }
-
-    public void setFavmusic(String favmusic) {
-        this.favmusic = favmusic;
     }
 
     public boolean isSubscription() {

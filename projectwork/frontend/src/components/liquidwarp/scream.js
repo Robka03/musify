@@ -13,11 +13,9 @@ var scream = tslFn( ( params ) => {
 
 	var pos = positionLocal.mul( exp( params.scale ) ).add( params.seed ).toVar( );
 
-	var k = noise( add( sin( pos.xyz ), cos( pos.yzx ) ) );
+	var k = noise( add( sin( pos.xyz ), cos( pos.yzx ) ).mul( 2 ) );
 
 	pos.assign( positionLocal.mul( exp( params.scale ).mul( k ) ).add( params.seed ) );
-
-	var k = noise( add( sin( pos.xyz ), cos( pos.yzx ) ).mul( 2 ) );
 
 	var col = mix( params.background, params.color, k ).toVar();
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const a4Width = 973;  // A4 width in px
 const a4Height = 1332; // A4 height in px

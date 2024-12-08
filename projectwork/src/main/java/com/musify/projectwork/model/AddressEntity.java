@@ -26,6 +26,17 @@ public class AddressEntity {
     @Column(name = "address_line", nullable = false)
     private String addressLine;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
