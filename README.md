@@ -21,7 +21,7 @@ Projekt befejezésének dátuma: 2024. 12. 08.
 ### Backend
 - Springboot
 - JSONWebToken
-- Unit
+- Junit
 - Mockito
 ### Frontend  
 - Node
