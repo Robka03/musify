@@ -9,6 +9,7 @@ import Button from "../../common/button/Button";
 import config from '../../config';
 import { useCart } from "../context/CartContext";
 import { Product, ProductType } from "../../product/product";
+import { randInt } from "three/src/math/MathUtils";
 
 
 function getId(input: string) {
@@ -20,6 +21,7 @@ export default function ImgCreatorHandler() {
     const [apiResponse, setApiResponse] = useState<any>(undefined);
     const [type] = useState<ProductType>(ProductType.Essential);
     const { addProduct } = useCart();
+    const [imgSrc, setImgSrc] = useState<string | undefined>();
 
     const handleChange = (e: any) => {
         const spotifyTrackUrlRegex = /^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]{22}\?si=[A-Za-z0-9]{16}$/;
@@ -62,11 +64,15 @@ export default function ImgCreatorHandler() {
                 <div className="col-md-5 col-12 p-5">
                     <h3 style={{ marginRight: "auto", textAlign: "left" }}>Your Artist, Your Music</h3>
                     <p style={{ marginRight: "auto", textAlign: "left" }}>Sometimes, you just need to let your inner creativity strike. YOU, are the person who wants everything tailor made to their liking, and we love that! All you need is the spotify link of your favourite music, a little artistic flavour and voilà, the perfect decoration is born!</p>
-                    <Input onKeyUp={handleChange} handleChange={()=>{}} onBlur={()=>{if (!imageDetails || !imageDetails.img) { alert("Please enter a valid Spotify link"); return; }}} title="Link" />
+                    <Input onKeyUp={handleChange} handleChange={() => { }} onBlur={(e: any) => { if ((!imageDetails || !imageDetails.img) && e.target.value !== "") { alert("Please enter a valid Spotify link"); return; } }} title="Link" />
                     <div className="d-flex justify-content-end">
                         <Button text="Order" onClick={() => {
                             if (!imageDetails || !imageDetails.img) { return; }
-                            addProduct(new Product((new Date().toString() + type + imageDetails.title), imageDetails.img.src, type, 1));
+                            if (!imgSrc) {
+                                alert("Please wait for the image to load");
+                                return;
+                            }
+                            addProduct(new Product((new Date().getTime() + randInt(0, 500) + ""), imgSrc, type, 1));
                         }
                         } buttonStyle="btn-success" />
                     </div>
@@ -75,7 +81,7 @@ export default function ImgCreatorHandler() {
 
                 </div>
                 <ImageContainer>
-                    <ImgCreator imageDetails={imageDetails} />
+                    <ImgCreator imageDetails={imageDetails} setImage={setImgSrc} />
                 </ImageContainer>
             </div>
             <ProductDashes />

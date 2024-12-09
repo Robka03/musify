@@ -1,7 +1,14 @@
 import { useLocation } from "react-router-dom"
+import { useCart } from "../context/CartContext";
+import { useEffect } from "react";
 
 export default function OrderSuccess({ }) {
     const location = useLocation();
+    const { setProducts } = useCart();
+    useEffect(() => {
+        setProducts([]);
+    }, []);
+
 
     const order = location.state || {};
     const { billing, address } = order.orderData;

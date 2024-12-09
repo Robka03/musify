@@ -5,6 +5,7 @@ import Button from '../../common/button/Button';
 import Input from '../../common/input/Input';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { Product } from '../../product/product';
 
 //TODO Ezt az egészet kb újra kéne írni, sok a GPT elég kaksi.
 
@@ -18,6 +19,7 @@ type Billing = {
 type Order = {
     billing: Billing;
     address: Address;
+    products: Product[];
 }
 
 const UserDetailsForm: React.FC<{ orderData: Order, setOrderData: React.Dispatch<React.SetStateAction<Order>> }> = ({ orderData, setOrderData }) => {
@@ -170,15 +172,15 @@ const PaymentPlaceholder: React.FC = () => (
 // Main Component
 const OrderForm: React.FC = () => {
 
-    const [orderData, setOrderData] = useState<Order>({} as Order);
     const { products, setProducts } = useCart();
-
     const navigate = useNavigate();
+    if(!products || products.length === 0) navigate('/');
+    const [orderData, setOrderData] = useState<Order>({ products: products || [] as Product[], billing: {} as Billing, address: {} as Address });
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(orderData);
-        setProducts([]);
         navigate('/ordersuccess', { state: { orderData: orderData } });
     };
 

@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
+import overlayImage from "../../assets/spotify overlay.png";
 
 const a4Width = 973;  // A4 width in px
 const a4Height = 1332; // A4 height in px
 
-export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTMLImageElement, code: HTMLImageElement, title: string, artist: string, length: number } | undefined }) {
+export default function ImgCreator({ imageDetails, setImage }: { imageDetails: { img: HTMLImageElement, code: HTMLImageElement, title: string, artist: string, length: number } | undefined, setImage: (value: string) => void }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
@@ -33,7 +34,7 @@ export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTML
 
                 // Draw the image on the canvas
                 ctx.clearRect(0, 0, a4Width, a4Height); // Clear the canvas before drawing
-                ctx.drawImage(cover, a4Width/2-a4Height/2, 0, a4Height, a4Height);
+                ctx.drawImage(cover, a4Width / 2 - a4Height / 2, 0, a4Height, a4Height);
                 const imageData = ctx.getImageData(0, 0, a4Width, a4Height);
                 const data = imageData.data;
 
@@ -45,8 +46,9 @@ export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTML
                 }
                 ctx.putImageData(imageData, 0, 0);
                 ctx.drawImage(cover, 243, 266, 486, 486);
-                
+
                 const codeImage = imageDetails.code;
+                codeImage.crossOrigin = "anonymous";
                 ctx.save();
                 ctx.globalCompositeOperation = "lighter"; // Ensure only white areas get drawn
                 ctx.drawImage(codeImage, 234, 123, 505, 127);
@@ -58,6 +60,15 @@ export default function ImgCreator({ imageDetails }: { imageDetails: { img: HTML
                 ctx.fillText(`${imageDetails.title}`, 254, 777)
                 ctx.font = "28px Arial";
                 ctx.fillText(`${imageDetails.artist}`, 254, 819)
+                ctx.save();
+                const overlay = new Image();
+                overlay.src = overlayImage;
+                overlay.crossOrigin = "anonymous";
+                overlay.onload = () => {
+                    ctx.drawImage(overlay, 207, 802, 576, 247);
+                    ctx.save();
+                    setImage(canvas.toDataURL());
+                }
             }
         }
     }, [imageDetails]);
