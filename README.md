@@ -19,14 +19,19 @@ Projekt befejezésének dátuma: 2024. 12. 08.
 ## Projekthez felhasznált technológiák  
 
 ### Backend
-- x
-- y  
-- z  
+- Springboot
+- JSONWebToken
+- Unit
+- Mockito
 ### Frontend  
-- x
-- y
-- z
+- Node
+- React
+- React-Router
+- Bootstrap
+- Three.js
+- Axios
+- Typescript
+- Webpack
 ### Adatbázis
-- x
-- y
-- z
+- MSQL
+- JPA
