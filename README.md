@@ -33,5 +33,5 @@ Projekt befejezésének dátuma: 2024. 12. 08.
 - Typescript
 - Webpack
 ### Adatbázis
-- MSQL
+- MYSQL
 - JPA
